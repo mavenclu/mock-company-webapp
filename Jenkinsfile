@@ -1,14 +1,15 @@
 pipeline {
-  agent any
+  agent {docker {image 'gradle:7.3.0-jdk8'}}
   stages {
-      stage('Build') {
+      stage('build') {
           steps {
-              ./gradlew assemble
+              sh './gradlew assemble'
           }
       }
-      stage('Test') {
+      stage('test') {
         steps {
-          ./gradlew test
+          sh './gradlew test'
         }
       }
   }
+}
