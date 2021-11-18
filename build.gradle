@@ -5,6 +5,9 @@ plugins {
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
     id "com.github.node-gradle.node" version "3.1.0" apply false
 }
+node {
+  download = true
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
