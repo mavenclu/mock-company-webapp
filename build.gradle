@@ -28,9 +28,6 @@ dependencies {
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
-node {
-  download = true
-}
 // Here we are going to make sure the client UI does a package install with yarn before building. This uses the gradle node plugin
 project(":client-app") {
     apply plugin: "com.github.node-gradle.node"
