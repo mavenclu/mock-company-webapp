@@ -17,4 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductItemRepository extends CrudRepository<ProductItem, Long> {
 
+    Iterable<ProductItem> findAllByNameIgnoreCaseOrDescriptionIgnoreCase(String name, String description);
+    Iterable<ProductItem> findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
+
 }
