@@ -1,23 +1,22 @@
 package com.mockcompany.webapp.controller;
 
-import com.mockcompany.webapp.data.ProductItemRepository;
 import com.mockcompany.webapp.model.ProductItem;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mockcompany.webapp.service.SearchService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ProductsController {
 
-    private final ProductItemRepository productItemRepository;
+    private final SearchService searchService;
 
-    @Autowired
-    public ProductsController(ProductItemRepository productItemRepository) {
-        this.productItemRepository = productItemRepository;
+    public ProductsController(SearchService searchService) {
+        this.searchService = searchService;
     }
+
 
     @GetMapping("/api/products/list")
     public Iterable<ProductItem> getAllProducts() {
-        return this.productItemRepository.findAll();
+        return searchService.findAll();
     }
 }
