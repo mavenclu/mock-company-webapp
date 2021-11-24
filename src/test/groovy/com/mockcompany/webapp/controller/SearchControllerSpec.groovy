@@ -137,7 +137,7 @@ class SearchControllerSpec extends Specification {
         ProductItem item4 = createItem("Will Match. Nevermind", "Should not actually match")
 
         and:
-        setupMockData([item1, item2, item3])
+        setupMockData([item1, item2, item3, item4])
 
         when:
         Set<ProductItem> results = doSearch('"Will Match"')
@@ -147,5 +147,27 @@ class SearchControllerSpec extends Specification {
         !results.contains(item2)
         results.contains(item3) // Matches on description
         !results.contains(item4)
+
+    }
+
+    def "search will return partial  match  on name or description when quotes are not used"() {
+        given:
+        ProductItem item1 = createItem("Will Match", "This is a good item")
+        ProductItem item2 = createItem("Won't Match", "This is a better item")
+        ProductItem item3 = createItem("Another Product", "Will Match")
+        ProductItem item4 = createItem("Will Match. Nevermind", "Should not actually match")
+
+        and:
+        setupMockData([item1, item2, item3, item4])
+
+        when:
+        Set<ProductItem> results = doSearch("Will Match")
+
+        then:
+        results.contains(item1) // Matches on name
+        !results.contains(item2)
+        results.contains(item3) // Matches on description
+        results.contains(item4)
+
     }
 }
