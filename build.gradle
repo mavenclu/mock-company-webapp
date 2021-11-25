@@ -31,11 +31,9 @@ dependencies {
 // Here we are going to make sure the client UI does a package install with yarn before building. This uses the gradle node plugin
 project(":client-app") {
     apply plugin: "com.github.node-gradle.node"
-
     node {
-      download = true
+        download = true
     }
-
     tasks.yarn_build.dependsOn tasks.yarn_install
 }
 
