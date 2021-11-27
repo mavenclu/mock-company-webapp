@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:14.1
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: db_maintainer
+      POSTGRES_PASSWORD: mysecretpassword
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      -
+        type: bind
+        source: ./db-data
+        target: /var/lib/postgresql/data
+    networks:
+      - reference
+networks:
+  reference:
+
