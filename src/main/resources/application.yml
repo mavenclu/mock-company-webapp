@@ -4,10 +4,12 @@ spring:
 
   # In memory database that is populated dynamically from DataPopulator
   datasource:
-    url: jdbc:h2:mem:productsdb
-    username: sa
-    password: password
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/products
+    username: db_maintainer
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
