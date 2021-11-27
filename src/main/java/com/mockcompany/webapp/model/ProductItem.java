@@ -3,11 +3,12 @@ package com.mockcompany.webapp.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "product_item")
 public class ProductItem {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_item_seq_gen")
+    @SequenceGenerator(name = "product_item_seq_gen", sequenceName = "product_item_id_seq", allocationSize = 1)
     private Long id;
     @Column(nullable = false)
     private String name;
